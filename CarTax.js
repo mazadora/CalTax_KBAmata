@@ -5,8 +5,8 @@
         document.getElementById("8y").innerHTML = "= 0.00 บาท";
         document.getElementById("9y").innerHTML = "= 0.00 บาท";
         document.getElementById("10y").innerHTML = "= 0.00 บาท";
-        document.getElementById("truck-tax").innerHTML = "= 0.00 บาท";
         document.getElementById("van-tax").innerHTML = "= 0.00 บาท";
+        document.getElementById("truck-tax").innerHTML = "= 0.00 บาท";
         document.getElementById("truck-white").innerHTML = "= 0.00 บาท";
         document.getElementById("truck-yellow").innerHTML = "= 0.00 บาท";
       }
@@ -29,18 +29,18 @@
         document.getElementById("10y").innerHTML = `= ${y10} บาท`;
       }
 
-      function getTruckTax() {
-        let kg = parseInt(document.getElementsByName('kg')[0].value) || 0;
-        let tax = calTruckTaxByKG(kg);
-        
-        document.getElementById("truck-tax").innerHTML = `= ${tax} บาท`;
-      }
-
       function getVanTax() {
         let kg = parseInt(document.getElementsByName('vanKG')[0].value) || 0;
         let tax = calVanTaxByKG(kg);
          
          document.getElementById("van-tax").innerHTML = `= ${tax} บาท`;
+      }
+
+      function getTruckTax() {
+        let kg = parseInt(document.getElementsByName('kg')[0].value) || 0;
+        let tax = calTruckTaxByKG(kg);
+        
+        document.getElementById("truck-tax").innerHTML = `= ${tax} บาท`;
       }
 
       function getTruckWhiteTax() {
@@ -75,29 +75,6 @@
         return tax.toFixed(2);
       }
 
-      function calTruckTaxByKG(kg) {
-         let tax = 0;
-
-         if (kg <= 500) tax = 0;
-         else if (kg <= 750) tax = 450;
-         else if (kg <= 1000) tax = 600;
-         else if (kg <= 1250) tax = 750;
-         else if (kg <= 1500) tax = 900;
-         else if (kg <= 1750) tax = 1050;
-         else if (kg <= 2000) tax = 1350;
-         else if (kg <= 2500) tax = 1650;
-         else if (kg <= 3000) tax = 1950;
-         else if (kg <= 3500) tax = 2250;
-         else if (kg <= 4000) tax = 2550;
-         else if (kg <= 4500) tax = 2850;
-         else if (kg <= 5000) tax = 3150;
-         else if (kg <= 6000) tax = 3450;
-         else if (kg <= 7000) tax = 3750;
-         else tax = 4050;
-            
-         return tax.toFixed(1);
-      }
-
       function calVanTaxByKG(kg) {
          let tax = 0;
 
@@ -117,6 +94,29 @@
          else if (kg <= 6000) tax = 3200;
          else if (kg <= 7000) tax = 3400;
          else tax = 3600;
+            
+         return tax.toFixed(1);
+      }
+
+      function calTruckTaxByKG(kg) {
+         let tax = 0;
+
+         if (kg <= 500) tax = 0;
+         else if (kg <= 750) tax = 450;
+         else if (kg <= 1000) tax = 600;
+         else if (kg <= 1250) tax = 750;
+         else if (kg <= 1500) tax = 900;
+         else if (kg <= 1750) tax = 1050;
+         else if (kg <= 2000) tax = 1350;
+         else if (kg <= 2500) tax = 1650;
+         else if (kg <= 3000) tax = 1950;
+         else if (kg <= 3500) tax = 2250;
+         else if (kg <= 4000) tax = 2550;
+         else if (kg <= 4500) tax = 2850;
+         else if (kg <= 5000) tax = 3150;
+         else if (kg <= 6000) tax = 3450;
+         else if (kg <= 7000) tax = 3750;
+         else tax = 4050;
             
          return tax.toFixed(1);
       }
