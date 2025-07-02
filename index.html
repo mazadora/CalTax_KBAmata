@@ -61,28 +61,6 @@
     <hr>
 
     <form name="form2" onsubmit="return false;">
-        <h2><span style="color: green; font-weight: bold;">รย.3 รถยนต์บรรทุกส่วนบุคคล<br>(รถกระบะ 2 ประตู)</span></h2>
-        <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
-        <input name="kg" type="text" size="14" maxlength="5" value="0">
-        <span style="font-size: 18px">&nbsp;กก.</span>
-        <p><input type="submit" onclick="getTruckTax()" value="กดคำนวณ ค่าต่อภาษีรถกระบะ"></p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th style="background-color: green; color: white;">ค่าต่อภาษีรถกระบะ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td id="truck-tax" style="color: #06F; height: 20px;"></td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-    <hr>
-
-    <form name="form3" onsubmit="return false;">
         <h2><span style="color: blue; font-weight: bold;">รย.2 รถยนต์นั่งส่วนบุคคลเกิน 7 คน<br>(รถตู้ / กระบะรับส่งพนักงาน)</span></h2>
         <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
         <input name="vanKG" type="text" size="14" maxlength="5" value="0">
@@ -98,6 +76,28 @@
             <tbody>
                 <tr>
                     <td id="van-tax" style="color: #06F; height: 20px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+
+    <form name="form3" onsubmit="return false;">
+        <h2><span style="color: green; font-weight: bold;">รย.3 รถยนต์บรรทุกส่วนบุคคล<br>(รถกระบะ 2 ประตู)</span></h2>
+        <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
+        <input name="kg" type="text" size="14" maxlength="5" value="0">
+        <span style="font-size: 18px">&nbsp;กก.</span>
+        <p><input type="submit" onclick="getTruckTax()" value="กดคำนวณ ค่าต่อภาษีรถกระบะ"></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: green; color: white;">ค่าต่อภาษีรถกระบะ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="truck-tax" style="color: #06F; height: 20px;"></td>
                 </tr>
             </tbody>
         </table>
