@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>คำนวณค่าภาษีรถยนต์</title>
+    <script src="CarTax.js"></script>
+
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; }
+        input[type="text"] { font-size: 16px; padding: 5px; }
+        input[type="submit"] { height: 35px; font-size: 16px; font-weight: bold; color: Red; cursor: pointer; }
+        hr { margin: 30px 0; }
+        h2 { margin-top: 30px; }
+    </style>
+</head>
+
+<body onload="onLoad()">
+
+    <h1>คำนวณภาษีรถยนต์ออนไลน์</h1>
+
+    <form name="form1" onsubmit="return false;">
+        <h2><span style="color: black; font-weight: bold;">รย.1 รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน<br>(รถเก๋ง / รถกระบะ 4 ประตู)</span></h2>
+        <span style="font-size: 18px">ขนาดเครื่องยนต์</span> &nbsp;=&nbsp;
+        <input name="cc" type="text" size="14" maxlength="5" value="0">
+        &nbsp;<span style="font-size: 18px">cc</span>
+        <p><input type="submit" onclick="getCarTax()" value="กดคำนวณ ค่าต่อภาษีรถเก๋ง"></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: black; color: white;">5 ปีแรก</th>
+                    <th style="background-color: black; color: white;">ปีที่ 6</th>
+                    <th style="background-color: black; color: white;">ปีที่ 7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="5y" style="color: #06F; height: 20px;"></td>
+                    <td id="6y" style="color: #06F;"></td>
+                    <td id="7y" style="color: #06F;"></td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th style="background-color: black; color: white;">ปีที่ 8</th>
+                    <th style="background-color: black; color: white;">ปีที่ 9</th>
+                    <th style="background-color: black; color: white;">ปีที่ 10 เป็นต้นไป</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="8y" style="color: #06F; height: 20px;"></td>
+                    <td id="9y" style="color: #06F;"></td>
+                    <td id="10y" style="color: #06F;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+
+    <form name="form2" onsubmit="return false;">
+        <h2><span style="color: green; font-weight: bold;">รย.3 รถยนต์บรรทุกส่วนบุคคล<br>(รถกระบะ 2 ประตู)</span></h2>
+        <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
+        <input name="kg" type="text" size="14" maxlength="5" value="0">
+        <span style="font-size: 18px">&nbsp;กก.</span>
+        <p><input type="submit" onclick="getTruckTax()" value="กดคำนวณ ค่าต่อภาษีรถกระบะ"></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: green; color: white;">ค่าต่อภาษีรถกระบะ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="truck-tax" style="color: #06F; height: 20px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+
+    <form name="form3" onsubmit="return false;">
+        <h2><span style="color: blue; font-weight: bold;">รย.2 รถยนต์นั่งส่วนบุคคลเกิน 7 คน<br>(รถตู้ / กระบะรับส่งพนักงาน)</span></h2>
+        <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
+        <input name="vanKG" type="text" size="14" maxlength="5" value="0">
+        &nbsp;<span style="font-size: 18px">กก.</span>
+        <p><input type="submit" onclick="getVanTax()" value="กดคำนวณ ค่าต่อภาษีรถตู้"></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: blue; color: white;">ค่าต่อภาษีรถตู้</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="van-tax" style="color: #06F; height: 20px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+    
+    <form name="form4" onsubmit="return false;">
+        <h2><span style="color: black; font-weight: bold;">รถบรรทุกตาม พรบ. ขนส่ง<br>(รถป้ายขาว ส่วนบุคคล)</span></h2>
+        <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
+        <input name="TruckWhite" type="text" size="14" maxlength="5" value="0">
+        &nbsp;<span style="font-size: 18px">กก.</span>
+        <p><input type="submit" onclick="getTruckWhiteTax()" value="กดคำนวณ ค่าต่อภาษี"></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: black; color: white;">ค่าต่อภาษีรถขนส่ง ป้ายขาว</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="truck-white" style="color: #06F; height: 20px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+    
+    <form name="form5" onsubmit="return false;">
+        <h2><span style="color: Orange; font-weight: bold;">รถบรรทุกตาม พรบ. ขนส่ง<br>(รถป้ายเหลือง รับจ้างไม่ประจำทาง)</span></h2>
+        <span style="font-size: 18px">น้ำหนักรถ</span> &nbsp;=&nbsp;
+        <input name="TruckYellow" type="text" size="14" maxlength="5" value="0">
+        &nbsp;<span style="font-size: 18px">กก.</span>
+        <p><input type="submit" onclick="getTruckYellowTax()" value="กดคำนวณ ค่าต่อภาษี"></p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: Orange; color: white;">ค่าต่อภาษีรถขนส่ง ป้ายเหลือง</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="truck-yellow" style="color: #06F; height: 20px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+
+</body>
+</html>
