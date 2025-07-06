@@ -14,7 +14,22 @@
         hr { margin: 30px 0; }
         h2 { margin-top: 30px; }
     </style>
-</head>
+
+    <script>
+        // ป้องกันการคลิกขวา
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // ป้องกันการกดคีย์ลัด (Ctrl+U, F12, etc.)
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' || 
+               (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) || 
+               (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) || 
+               (e.ctrlKey && (e.key === 'U' || e.key === 'u'))) {
+                e.preventDefault();
+            }
+        });
+    </script>
+    </head>
 
 <body onload="onLoad()">
 
