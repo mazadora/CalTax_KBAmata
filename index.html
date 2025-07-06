@@ -14,24 +14,9 @@
         hr { margin: 30px 0; }
         h2 { margin-top: 30px; }
     </style>
+</head>
 
-    <script>
-        // ป้องกันการคลิกขวา
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // ป้องกันการกดคีย์ลัด (Ctrl+U, F12, etc.)
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'F12' || 
-               (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) || 
-               (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) || 
-               (e.ctrlKey && (e.key === 'U' || e.key === 'u'))) {
-                e.preventDefault();
-            }
-        });
-    </script>
-    </head>
-
-<body onload="onLoad()">
+<body onload="onLoad()" oncontextmenu="return false;" onkeydown="return blockKeys(event)">
 
     <h1><img src="https://i.imgur.com/92uX0eH.png" weight="30" height="30"> ตรอ.เคบี อมตะ : คำนวณค่าภาษีรถออนไลน์ รถยนต์ใช้น้ำมัน</h1>
 
@@ -163,5 +148,28 @@
     </form>
     <hr>
 
+    <script>
+        function blockKeys(e) {
+            // ทำให้ใช้ได้กับทุกเบราว์เซอร์
+            var event = e || window.event;
+            
+            // บล็อก F12
+            if (event.keyCode === 123) {
+                return false;
+            }
+            // บล็อก Ctrl+Shift+I
+            if (event.ctrlKey && event.shiftKey && event.keyCode === 73) {
+                return false;
+            }
+            // บล็อก Ctrl+Shift+J
+            if (event.ctrlKey && event.shiftKey && event.keyCode === 74) {
+                return false;
+            }
+            // บล็อก Ctrl+U
+            if (event.ctrlKey && event.keyCode === 85) {
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
